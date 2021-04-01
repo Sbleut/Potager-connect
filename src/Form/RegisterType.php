@@ -9,9 +9,11 @@ use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\Extension\Core\Type\PasswordType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Mime\Email as MimeEmail;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Validator\Constraints\EmailValidator;
 use Symfony\Component\Validator\Constraints\EqualTo;
 use Symfony\Component\Validator\Constraints\File;
 use Symfony\Component\Validator\Constraints\Length;
@@ -25,7 +27,6 @@ class RegisterType extends AbstractType
             ->add('email', EmailType::class, [
                 'constraints' => [
                     new NotBlank(),
-                    new MimeEmail()
                 ]
             ])
             ->add('password', PasswordType::class, [
@@ -36,13 +37,13 @@ class RegisterType extends AbstractType
                     ])
                 ]
             ])
-            ->add('check_password', PasswordType::class, [
+            /*->add('check_password', PasswordType::class, [
                 'constraints' => [
                     new EqualTo([
                         'propertyPath' => 'password'
                     ])
                 ]
-            ])
+            ])*/
             ->add('nom', TextType::class, [
                 'constraints' => [
                     new NotBlank()
@@ -65,9 +66,9 @@ class RegisterType extends AbstractType
                     new File([
                         'maxSize' => '5M',
                         'mimeTypes' => [
-                            'certificat/jpeg',
-                            'certificat/png',
-                            'certificat/pdf',
+                            'image/jpeg',
+                            'image/png',
+                            'application/pdf',
                         ]
                     
                     ])

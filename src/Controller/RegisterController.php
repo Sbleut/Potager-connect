@@ -17,22 +17,16 @@ class RegisterController extends AbstractController
      */
     public function createUser(Request $r, UserPasswordEncoderInterface $encoder): Response
     {
-        $form = $this->createForm(RegisterType::class);
+        $user = new User();
+
+        $form = $this->createForm(RegisterType::class, $user);
 
         $form->handleRequest($r);
 
         if ($form->isSubmitted() && $form->isValid()){
 
-            $user = new User();
-
-            $encodedPassword = $encoder->encodePassword($user, $form['password']);
-
-            $user->setEmail($form['email']);
+            $encodedPassword = $encoder->encodePassword($user, $user->getPassword());
             $user->setPassword($encodedPassword);
-            $user->setNom($form['nom']);
-            $user->setPrenom($form['prenom']);
-            $user->setAdresse($form['adresse']);
-            $user->setCertificat($form['certificat']);
 
             $em = $this->getDoctrine()->getManager();
             $em->persist($user);
@@ -42,7 +36,8 @@ class RegisterController extends AbstractController
 
         } else {
 
-        return $this->render('register/index.html.twig', [
+        return $this->render('register.html.twig', [
+            'utilisateur' => $user,
             'form' => $form->createView()
         ]);
         }
