@@ -1,0 +1,12 @@
+* {
+  margin: 0;
+}
+
+body {
+  display: flex;
+}
+body div {
+  background-color: yellow;
+}
+
+/*# sourceMappingURL=style.css.map */
