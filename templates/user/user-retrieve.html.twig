@@ -1,0 +1,88 @@
+{% extends 'layout/layout.html.twig' %}
+
+{% block title %}user
+{% endblock %}
+
+{% block body %}
+	<h1>user</h1>
+
+	<div class="container">
+		<table class="table">
+			<thead>
+				<th>Id</th>
+				<th>Email</th>
+				<th>Roles</th>
+				<th>Password</th>
+				<th>Prenom</th>
+				<th>Nom</th>
+
+			</thead>
+			<tbody>
+				<tr>
+					<td>{{ user.id }}</td>
+					<td>{{ user.email }}</td>
+					<td>{{ user.roles ? user.roles|json_encode : '' }}</td>
+					<td>{{ user.password }}</td>
+					<td>{{ user.prenom }}</td>
+					<td>{{ user.nom }}</td>
+				</tr>
+				{#<tr>
+				                    <th>IsVerified</th>
+				                    <td>{{ user.isVerified ? 'Yes' : 'No' }}</td>
+				                </tr>#}
+			</tbody>
+		</table>
+	</div>
+
+	<button>
+		<a class="nav-link {% if app.user %}{% endif %}" href="{{ path('user-delete', {'id': user.id}) }}">Je veux supprimer mon profil</a>
+	</button>
+
+	<div class="container">
+		<table class="table">
+			<thead>
+				<th>nature du produit</th>
+				<th>variété</th>
+				<th>catégorie</th>
+				<th>traitement</th>
+				<th>photo</th>
+				<th>prix</th>
+				<th>producteur</th>
+				<th>supprimer</th>
+			</thead>
+			<tbody>
+				{% for produit in produits %}
+					<tr>
+						<td>{{ produit.nature }}</td>
+						<td>{{ produit.variete }}</td>
+						<td>{{ produit.categorie }}</td>
+						<td>{{ produit.traitement }}</td>
+						<td>
+							<img{{produit.prix}}</td src="{{asset('assets/photos/' ~ produit.photo)}}" </td> <td>>
+								<td>{{ produit.producteur.nom }}</td>
+								<th>
+									<a class="nav-link {% if app.user %}{% endif %}" href="{{ path('produit-delete', {'id': produit.id}) }}">supprimer</a>
+								</th>
+							</tr>
+							{#<tr>
+														<th>IsVerified</th>
+														<td>{{ user.isVerified ? 'Yes' : 'No' }}</td>
+														</tr>#}
+						{% else %}
+							<p>Il n'y a aucun article à afficher.</p>
+						{% endfor %}
+					</tr>
+				</tbody>
+			</tbody>
+		</table>
+	</div>
+    <div class="container">
+	{{ form( form, {'action': path( 'creer-produit', {'user_id': user.id} )} ) }}
+    </div>
+
+		{#<a href="{{ path('user_index') }}">back to list</a>
+		
+		    <a href="{{ path('user_edit', {'id': user.id}) }}">edit</a>
+		
+		    {{ include('user/_delete_form.html.twig') }}#}
+	{% endblock %}

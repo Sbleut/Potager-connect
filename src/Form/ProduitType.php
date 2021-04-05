@@ -2,73 +2,52 @@
 
 namespace App\Form;
 
+use App\Entity\Produit;
 use App\Entity\User;
 use Symfony\Component\Form\AbstractType;
-use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
-use Symfony\Component\Form\Extension\Core\Type\PasswordType;
+use Symfony\Component\Validator\Constraints\File;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
-use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
-use Symfony\Component\Mime\Email as MimeEmail;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
-use Symfony\Component\Validator\Constraints\EmailValidator;
-use Symfony\Component\Validator\Constraints\EqualTo;
-use Symfony\Component\Validator\Constraints\File;
-use Symfony\Component\Validator\Constraints\Length;
+use Symfony\Component\Validator\Constraints\File as ConstraintsFile;
 use Symfony\Component\Validator\Constraints\NotBlank;
 
-class RegisterType extends AbstractType
+class ProduitType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('email', EmailType::class, [
-                'constraints' => [
-                    new NotBlank(),
-                ]
-            ])
-            ->add('password', PasswordType::class, [
-                'constraints' => [
-                    new NotBlank(),
-                    new Length([
-                        'min' => 8
-                    ])
-                ]
-            ])
-            // ->add('check_password', PasswordType::class, [
-            //     'constraints' => [
-            //         new EqualTo([
-            //             'propertyPath' => 'password'
-            //         ])
-            //     ]
-            // ])
-            ->add('nom', TextType::class, [
+            ->add('nature', TextType::class, [
                 'constraints' => [
                     new NotBlank()
                 ]
             ])
-            ->add('prenom', TextType::class, [
+            ->add('variete', TextType::class, [
                 'constraints' => [
                     new NotBlank()
                 ]
             ])
-            ->add('adresse', TextareaType::class, [
+            ->add('categorie', TextType::class, [
                 'constraints' => [
                     new NotBlank()
                 ]
             ])
-            ->add('certificat', FileType::class, [
-                'label' => 'Certificat d\'autoritsation',
+            ->add('traitement', TextType::class, [
+                'constraints' => [
+                    new NotBlank()
+                ]
+            ])
+            ->add('photo', FileType::class, [
+                'label' => 'photo',
                 'data_class' => null,
                 'constraints' => [
                     new File([
                         'maxSize' => '5M',
                         'mimeTypes' => [
-                            'certificat/jpeg',
-                            'certificat/png',
-                            'application/pdf',
+                            'image/jpeg',
+                            'image/png',
                         ]
                     
                     ])
@@ -77,9 +56,14 @@ class RegisterType extends AbstractType
                     'class' => 'form-field',
                     'placeholder' => 'Fichier justificatif'
                     ]
-            ] )
+            ])
+            ->add('prix', TextType::class, [
+                'constraints' => [
+                    new NotBlank()
+                ]
+            ])
             ->add('submit', SubmitType::class, [
-                'label' => 'Créer un compte',
+                'label' => 'Ajouter un produit',
                 'attr' => [
                     'class' => 'button'
                     ]
@@ -90,7 +74,7 @@ class RegisterType extends AbstractType
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults([
-            'data_class' => User::class,
+            'data_class' => Produit::class,
         ]);
     }
 }

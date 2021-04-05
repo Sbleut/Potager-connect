@@ -1,0 +1,39 @@
+{% extends "layout/layout.html.twig" %}
+
+{% block title %}Tous les producteurs
+{% endblock %}
+
+{% block body %}
+	<div style="display: flex;">
+
+		<div
+			style="display: inline-block; width: 30%;">
+			{#<img src="{{asset('img/articles/' ~ a.image)}}" alt="Avatar" style="width:100%">#}
+			<div class="container">
+				<table class="table">
+					<thead>
+						<th>Email</th>
+						<th>Prenom</th>
+						<th>Nom</th>
+
+					</thead>
+					<tbody>
+						{% for user in users %}
+							<tr>
+								<td>{{ user.email }}</td>
+								<td>{{ user.prenom }}</td>
+								<td>{{ user.nom }}</td>
+							</tr>
+							{#<tr>						                <th>IsVerified</th>
+							<td>{{ user.isVerified ? 'Yes' : 'No' }}</td>        </tr>#}
+						{% else %}
+							<p>Il n'y a aucun article à afficher.</p>
+						{% endfor %}
+					</tbody>
+				</table>
+			</div>
+		</div>
+
+
+	</div>
+{% endblock %}

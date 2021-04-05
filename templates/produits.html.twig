@@ -1,0 +1,47 @@
+{% extends "layout/layout.html.twig" %}
+
+{% block title %}Tous les produits
+{% endblock %}
+
+{% block body %}
+	<div style="display: flex;">
+		
+			<div
+				style="display: inline-block; width: 30%;">
+				{#<img src="{{asset('img/articles/' ~ a.image)}}" alt="Avatar" style="width:100%">#}
+				<div class="container">
+					<table class="table">
+						<thead>							
+							<th>nature du produit</th>						
+							<th>variété</th>
+							<th>catégorie</th>
+                            <th>traitement</th>
+                            <th>photo</th>
+                            <th>prix</th>
+                            <th>producteur</th>
+						</thead>
+						<tbody>
+						{% for produit in produits %}
+							<tr>
+								<td>{{ produit.nature }}</td>
+								<td>{{ produit.variete }}</td>
+								<td>{{ produit.categorie }}</td>
+                                <td>{{ produit.traitement }}</td>
+                                <td><img src="{{asset('assets/photos/' ~ produit.photo)}}"</td>
+                                <td>{{ produit.prix }}</td>
+                                <td>{{ produit.producteur.nom }}</td>
+							</tr>						
+							{#<tr>
+							<th>IsVerified</th>
+							<td>{{ user.isVerified ? 'Yes' : 'No' }}</td>
+							</tr>#}
+						{% else %}
+							<p>Il n'y a aucun article à afficher.</p>
+						{% endfor %}
+						</tbody>
+					</table>
+				</div>
+			</div>
+		
+	</div>
+{% endblock %}
