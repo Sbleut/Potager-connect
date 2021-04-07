@@ -25,7 +25,6 @@ class ProduitController extends AbstractController
      */
     public function createProduit(Request $r): Response
     {
-
         $user = $this->getUser();
 
         if (empty($user)) throw new NotFoundHttpException();

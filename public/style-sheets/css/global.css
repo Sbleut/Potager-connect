@@ -67,7 +67,7 @@ h6 {
 }
 
 #margin-body {
-  padding: 8rem;
+  padding-top: 5rem;
 }
 
 body {
@@ -137,6 +137,9 @@ body section .concept div .bulle {
   align-items: center;
   width: 30%;
 }
+body section .concept div .bulle h2 {
+  text-align: center;
+}
 body section .concept div .bulle p {
   font-size: 1rem;
 }
@@ -165,9 +168,12 @@ body section .produits .cards-container {
 }
 body section .produits .cards-container .card-container {
   display: flex;
+  position: relative;
   flex-direction: column;
-  justify-content: space-around;
+  justify-content: space-between;
   align-items: center;
+  background-color: #fff;
+  margin-bottom: 1rem;
   width: 30%;
 }
 body section .produits .cards-container .card-container .card-link {
@@ -176,7 +182,8 @@ body section .produits .cards-container .card-container .card-link {
   margin: 0 auto;
   max-width: 400px;
 }
-body section .produits .cards-container .card-container .card-link .card-img {
+body section .produits .cards-container .card-container .card-img {
+  top: 0;
   width: 100%;
 }
 body section .produits .cards-container .card-container .card-text {

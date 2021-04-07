@@ -68,7 +68,7 @@ h6 {
     background-color: rgb(238, 238, 238);
 }
 #margin-body{
-    padding: 8rem;
+    padding-top: 5rem;
 }
 
 // STRUCTURE DE LA PAGE /////////////
@@ -144,8 +144,11 @@ body{
                     display: flex;
                     flex-direction: column;
                     justify-content: space-around;
-                    align-items: center;
+                    align-items: center;                    
                     width: 30%;
+                    h2{
+                        text-align: center;
+                    }
                     p{
                         font-size: 1rem;
                     }
@@ -177,18 +180,22 @@ body{
                 justify-content: space-around;             
                 .card-container{
                     display: flex;
+                    position: relative;
                     flex-direction: column;
-                    justify-content: space-around;
+                    justify-content: space-between;
                     align-items: center;
+                    background-color: #fff;
+                    margin-bottom: 1rem;
                     width: 30%;
                     .card-link{
                         display: block;
                         position: relative;
                         margin: 0 auto;
                         max-width: 400px;
-                        .card-img{
-                            width: 100%;
-                        }
+                    }
+                    .card-img{
+                        top: 0;
+                        width: 100%;
                     }
                     .card-text{
                         display: flex;
