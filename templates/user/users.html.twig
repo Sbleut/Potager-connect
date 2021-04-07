@@ -23,6 +23,10 @@
 								<td>{{ user.email }}</td>
 								<td>{{ user.prenom }}</td>
 								<td>{{ user.nom }}</td>
+								<td><a href="{{ path('user-retrieve', {'id': user.id})}}">Voir le profil</a></td>
+								{% if is_granted('ROLE_ADMIN') %}
+								<td><a href="{{ path('user-delete', {'id': user.id}) }}">Supprimer</a></td>
+								{% endif %}
 							</tr>
 							{#<tr>						                <th>IsVerified</th>
 							<td>{{ user.isVerified ? 'Yes' : 'No' }}</td>        </tr>#}

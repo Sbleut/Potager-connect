@@ -66,8 +66,8 @@ class RegisterType extends AbstractType
                     new File([
                         'maxSize' => '5M',
                         'mimeTypes' => [
-                            'certificat/jpeg',
-                            'certificat/png',
+                            'image/jpeg',
+                            'image/png',
                             'application/pdf',
                         ]
                     
@@ -76,6 +76,24 @@ class RegisterType extends AbstractType
                 'attr' => [
                     'class' => 'form-field',
                     'placeholder' => 'Fichier justificatif'
+                    ]
+            ] )
+            ->add('portrait', FileType::class, [
+                'label' => 'Portrait photo',
+                'data_class' => null,
+                'constraints' => [
+                    new File([
+                        'maxSize' => '5M',
+                        'mimeTypes' => [
+                            'image/jpeg',
+                            'image/png',
+                        ]
+                    
+                    ])
+                ],
+                'attr' => [
+                    'class' => 'form-field',
+                    'placeholder' => 'fichier image'
                     ]
             ] )
             ->add('submit', SubmitType::class, [

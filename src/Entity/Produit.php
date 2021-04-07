@@ -53,6 +53,16 @@ class Produit
      */
     private $id_producteur;
 
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $origine;
+
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $description;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -138,6 +148,30 @@ class Produit
     public function setProducteur(?User $id_producteur): self
     {
         $this->id_producteur = $id_producteur;
+
+        return $this;
+    }
+
+    public function getOrigine(): ?string
+    {
+        return $this->origine;
+    }
+
+    public function setOrigine(string $origine): self
+    {
+        $this->origine = $origine;
+
+        return $this;
+    }
+
+    public function getDescription(): ?string
+    {
+        return $this->description;
+    }
+
+    public function setDescription(?string $description): self
+    {
+        $this->description = $description;
 
         return $this;
     }

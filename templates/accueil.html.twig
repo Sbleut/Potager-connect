@@ -1,1 +1,157 @@
 {% extends 'layout/layout.html.twig' %}
+
+
+{% block body %}
+	<header>
+		<div class="containers">
+			<div class="intro-text">
+				<div class="intro-lead-in">Welcome !
+				</div>
+				<p class="intro-heading">Vous avez un Potager et vous voulez le rentabiliser ou vendre votre surplus</p>
+				<a href="{{ path('register') }}" class="page-scroll btn-in-page">Inscrivez-Vous</a>
+			</div>
+		</div>
+	</header>
+
+	<section class="containers">
+		<div class="containers concept">
+			<h1>Potager Connect | "expression clé"</h1>
+			<p>Notre concept</p>
+			<div class="containers">
+				<div class="containers bulle">
+					<img class="picto" src="{{asset('assets/images/plantation.jpeg')}}">
+					<h2>Des potagers biens garnis</h2>
+					<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Minima maxime quam architecto quo inventore harum ex magni, dicta impedit.</p>
+				</div>
+				<div class="containers bulle">
+					<img class="picto" src="{{asset('assets/images/plantation.jpeg')}}">
+					<h2>Des potagers biens garnis</h2>
+					<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Minima maxime quam architecto quo inventore harum ex magni, dicta impedit.</p>
+				</div>
+				<div class="containers bulle">
+					<img class="picto" src="{{asset('assets/images/plantation.jpeg')}}">
+					<h2>Des potagers biens garnis</h2>
+					<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Minima maxime quam architecto quo inventore harum ex magni, dicta impedit.</p>
+				</div>
+			</div>
+
+		</div>
+	</section>
+
+	<!-- potager Grid Section -->
+	<section id="potager">
+		<div class="produits">
+			<div class="produits-title">
+				<h2 class="title">Les produits du moment</h2>
+				<h3 class="sub-title">Lorem ipsum dolor sit amet consectetur.</h3>
+			</div>
+			<div
+				class="cards-container">
+				<!-- POTAGER CARD 1 -->
+				<div class="card-container">
+					<a href="#potagerModal1" class="card-link" data-toggle="modal">
+						<div class="link-hover"></div>
+						<img src="{{asset('assets/images/nos_produits_du_moment/aubergine-figues.jpg')}}" class="card-img" alt="">
+					</a>
+					<div class="card-text">
+						<h4>Les aubergines de JP</h4>
+						<p class="text">Venez découvrir ces aubergines grafiti</p>
+					</div>
+				</div>
+
+				<!-- POTAGER CARD 2 -->
+				<div class="card-container">
+					<a href="#potagerModal1" class="card-link" data-toggle="modal">
+						<div class="link-hover"></div>
+						<img src="{{asset('assets/images/nos_produits_du_moment/oignon-poivrons-epices.jpg')}}" class="card-img" alt="">
+					</a>
+					<div class="card-text">
+						<h4>LLes légumes de Claudines</h4>
+						<p class="text">Laissez vous tenter par ses légumes frais</p>
+					</div>
+				</div>
+
+				<!-- POTAGER CARD 3 -->
+				<div class="card-container">
+					<a href="#potagerModal1" class="card-link" data-toggle="modal">
+						<div class="link-hover"></div>
+						<img src="{{asset('assets/images/nos_produits_du_moment/fruits.jpg')}}" class="card-img" alt="">
+					</a>
+					<div class="card-text">
+						<h4>Les fruits de Martines</h4>
+						<p class="text">Laissez vou tenté par ces couleurs et saveurs sucrées</p>
+					</div>
+				</div>
+
+				<!-- POTAGER CARD 4 -->
+				<div class="card-container">
+					<a href="#potagerModal1" class="card-link" data-toggle="modal">
+						<div class="link-hover"></div>
+						<img src="{{asset('assets/images/nos_produits_du_moment/clementines.jpeg')}}" class="card-img" alt="">
+					</a>
+					<div class="card-text">
+						<h4>Les clémentines de Bruno</h4>
+						<p class="text">Derniers arrivage sde clémentines et de choux</p>
+					</div>
+				</div>
+
+				<!-- POTAGER CARD 5 -->
+				<div class="card-container">
+					<a href="#potagerModal1" class="card-link" data-toggle="modal">
+						<div class="link-hover"></div>
+						<img src="{{asset('assets/images/nos_produits_du_moment/asperges-avocats.jpeg')}}" class="card-img" alt="">
+					</a>
+					<div class="card-text">
+						<h4>La ferme de Maurice</h4>
+						<p class="text">Venez apréciez les avocats et les asperges disponible</p>
+					</div>
+				</div>
+
+				<!-- POTAGER CARD 6 -->
+				<div class="card-container">
+					<a href="#potagerModal1" class="card-link" data-toggle="modal">
+						<div class="link-hover"></div>
+						<img src="{{asset('assets/images/nos_produits_du_moment/fraises.jpeg')}}" class="card-img" alt="">
+					</a>
+					<div class="card-text">
+						<h4>Les fraises de Francis</h4>
+						<p class="text">Dernière cueillette des gariguettes dans notre fermes</p>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<section class="equipe">
+		<div class="containers concept">
+			<h2>L'équipe de potager connect</h2>
+			<p>Notre concept</p>
+			<div class="containers">
+				<div class="containers bulle">
+					<img class="picto" src="{{asset('assets/images/plantation.jpeg')}}">
+					<h2>Thomas Sublet</h2>
+					<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Minima maxime quam architecto quo inventore harum ex magni, dicta impedit.</p>
+				</div>
+				<div class="containers bulle">
+					<img class="picto" src="{{asset('assets/images/plantation.jpeg')}}">
+					<h2>Elizania </h2>
+					<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Minima maxime quam architecto quo inventore harum ex magni, dicta impedit.</p>
+				</div>
+				<div class="containers bulle">
+					<img class="picto" src="{{asset('assets/images/plantation.jpeg')}}">
+					<h2>Rémi </h2>
+					<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Minima maxime quam architecto quo inventore harum ex magni, dicta impedit.</p>
+				</div>
+                <div class="containers bulle">
+					<img class="picto" src="{{asset('assets/images/plantation.jpeg')}}">
+					<h2>Savinien </h2>
+					<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Minima maxime quam architecto quo inventore harum ex magni, dicta impedit.</p>
+				</div>
+			</div>
+
+		</div>
+	</section>
+
+	<section class="contact"></section>
+
+{% endblock %}

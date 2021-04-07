@@ -4,44 +4,32 @@
 {% endblock %}
 
 {% block body %}
-	<div style="display: flex;">
-		
-			<div
-				style="display: inline-block; width: 30%;">
-				{#<img src="{{asset('img/articles/' ~ a.image)}}" alt="Avatar" style="width:100%">#}
-				<div class="container">
-					<table class="table">
-						<thead>							
-							<th>nature du produit</th>						
-							<th>variété</th>
-							<th>catégorie</th>
-                            <th>traitement</th>
-                            <th>photo</th>
-                            <th>prix</th>
-                            <th>producteur</th>
-						</thead>
-						<tbody>
-						{% for produit in produits %}
-							<tr>
-								<td>{{ produit.nature }}</td>
-								<td>{{ produit.variete }}</td>
-								<td>{{ produit.categorie }}</td>
-                                <td>{{ produit.traitement }}</td>
-                                <td><img src="{{asset('assets/photos/' ~ produit.photo)}}"</td>
-                                <td>{{ produit.prix }}</td>
-                                <td>{{ produit.producteur.nom }}</td>
-							</tr>						
-							{#<tr>
-							<th>IsVerified</th>
-							<td>{{ user.isVerified ? 'Yes' : 'No' }}</td>
-							</tr>#}
-						{% else %}
-							<p>Il n'y a aucun article à afficher.</p>
-						{% endfor %}
-						</tbody>
-					</table>
+	<div class="d-flex ">
+
+		<div class="container d-flex flex-wrap justify-content-around">
+			{% for produit in produits %}
+				<div class="card" style="width: 18rem;">
+					<img class="card-img-top" style="height: 300px; object-fit: cover;" src="{{asset('assets/photos/' ~ produit.photo)}}" alt="Card image cap">
+					<div class="card-body">
+						<h5 class="card-title">{{ produit.nature }}</h5>
+						<p class="card-text">{{ produit.producteur.nom }}. Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+					</div>
+					<ul class="list-group list-group-flush">
+						<li class="list-group-item">{{ produit.variete }}</li>
+						<li class="list-group-item">{{ produit.categorie }}</li>
+						<li class="list-group-item">{{ produit.traitement }}</li>
+					</ul>
+					<div class="card-body">
+						<a href="{{ path('user-retrieve', {'id': produit.producteur.id}) }}" class="card-link">{{ produit.producteur.nom }}</a>
+						<a href="{{ path('produit', {'id': produit.id}) }}" class="card-link">Voir les détails du produit</a>
+						{% if app.user == produit.producteur or is_granted('ROLE_ADMIN') %}
+							<a class="nav-link" href="{{ path('produit-delete', {'id': produit.id}) }}">Supprimer</a>
+						{% endif %}
+					</div>
 				</div>
-			</div>
-		
-	</div>
+			{% else %}
+				<p>Il n'y a aucun article à afficher.</p>
+			{% endfor %}
+		</div>
+
 {% endblock %}
