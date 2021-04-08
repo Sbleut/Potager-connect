@@ -1,0 +1,58 @@
+{% extends 'layout/layout.html.twig' %}
+
+{% block title %}Mon profil
+{% endblock %}
+
+{% block body %}
+	
+	<h1>{{user.prenom}} est votre producteur</h1>
+
+	<div class="container">
+		<div class="d-flex card mb-3 flex-row {% if (user.id%2 == 1) %} flex-row-reverse {% endif %}">
+			<img class="img-card " style="height: 300px; width: auto;" src="{{asset('assets/portraits/' ~ user.portrait)}}" alt="Card image cap">
+			<div class="card-body d-flex flex-column justify-content-around">
+				<h5 class="card-title">{{ user.prenom }}{{ user.nom }}</h5>
+				<p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+				<p class="card-text">
+					<small class="text-muted">{{ user.email }}</small>
+					<a class="btn btn-success" href="{{ path('user-retrieve', {'id': user.id})}}">Voir le profil</a>
+				</p>
+				{% if is_granted('ROLE_ADMIN') or app.user == user %}
+					<a class="btn btn-sm btn-success" type="button" href="{{ path('user-delete', {'id': user.id}) }}">Supprimer</a>
+				{% endif %}
+			</div>
+		</div>
+	</div>	
+
+	<div class="container d-flex flex-wrap justify-content-around">
+		{% for produit in user.produits %}
+			<div class="card" style="width: 18rem;">
+				<img class="card-img-top" style="height: 300px; width: auto;" src="{{asset('assets/photos/' ~ produit.photo)}}" alt="Card image cap">
+				<div class="card-body">
+					<h5 class="card-title">{{ produit.nature }}</h5>
+					<p class="card-text">{{ produit.producteur.nom }}. Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+				</div>
+				<ul class="list-group list-group-flush">
+					<li class="list-group-item">{{ produit.variete }}</li>
+					<li class="list-group-item">{{ produit.categorie }}</li>
+					<li class="list-group-item">{{ produit.traitement }}</li>
+				</ul>
+				<div class="card-body">
+					<a href="{{ path('user-retrieve', {'id': produit.producteur.id}) }}" class="card-link">{{ produit.producteur.nom }}</a>
+					{% if app.user == produit.producteur %}
+						<a class="nav-link" href="{{ path('produit-delete', {'id': produit.id}) }}">supprimer</a>
+					{% endif %}
+				</div>
+			</div>
+		{% else %}
+			<p>Il n'y a aucun article à afficher.</p>
+		{% endfor %}
+	</div>
+	
+	{% if app.user == user %}
+	<div class="container">
+		<h2>Formulaire d'ajout de produit</h2>
+		{{ form( form, {'action': path( 'creer-produit' )} ) }}
+	</div>
+	{% endif %}
+	{% endblock %}

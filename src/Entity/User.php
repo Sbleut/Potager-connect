@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\UserRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Security\Core\User\UserInterface;
 
@@ -54,6 +56,21 @@ class User implements UserInterface
      * @ORM\Column(type="string", length=255)
      */
     private $certificat;
+
+    /**
+     * @ORM\OneToMany(targetEntity=Produit::class, mappedBy="id_producteur", orphanRemoval=true)
+     */
+    private $produits;
+
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $portrait;
+
+    public function __construct()
+    {
+        $this->produits = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -180,6 +197,48 @@ class User implements UserInterface
     public function setCertificat(string $certificat): self
     {
         $this->certificat = $certificat;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Produit[]
+     */
+    public function getProduits(): Collection
+    {
+        return $this->produits;
+    }
+
+    public function addProduit(Produit $produit): self
+    {
+        if (!$this->produits->contains($produit)) {
+            $this->produits[] = $produit;
+            $produit->setProducteur($this);
+        }
+
+        return $this;
+    }
+
+    public function removeProduit(Produit $produit): self
+    {
+        if ($this->produits->removeElement($produit)) {
+            // set the owning side to null (unless already changed)
+            if ($produit->getProducteur() === $this) {
+                $produit->setProducteur(null);
+            }
+        }
+
+        return $this;
+    }
+
+    public function getPortrait(): ?string
+    {
+        return $this->portrait;
+    }
+
+    public function setPortrait(?string $portrait): self
+    {
+        $this->portrait = $portrait;
 
         return $this;
     }

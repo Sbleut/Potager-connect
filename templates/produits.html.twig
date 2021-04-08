@@ -1,0 +1,35 @@
+{% extends "layout/layout.html.twig" %}
+
+{% block title %}Tous les produits
+{% endblock %}
+
+{% block body %}
+	<div class="d-flex ">
+
+		<div class="container d-flex flex-wrap justify-content-around">
+			{% for produit in produits %}
+				<div class="card" style="width: 18rem;">
+					<img class="card-img-top" style="height: 300px; object-fit: cover;" src="{{asset('assets/photos/' ~ produit.photo)}}" alt="Card image cap">
+					<div class="card-body">
+						<h5 class="card-title">{{ produit.nature }}</h5>
+						<p class="card-text">{{ produit.producteur.nom }}. Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+					</div>
+					<ul class="list-group list-group-flush">
+						<li class="list-group-item">{{ produit.variete }}</li>
+						<li class="list-group-item">{{ produit.categorie }}</li>
+						<li class="list-group-item">{{ produit.traitement }}</li>
+					</ul>
+					<div class="card-body">
+						<a href="{{ path('user-retrieve', {'id': produit.producteur.id}) }}" class="card-link">{{ produit.producteur.nom }}</a>
+						<a href="{{ path('produit', {'id': produit.id}) }}" class="card-link">Voir les détails du produit</a>
+						{% if app.user == produit.producteur or is_granted('ROLE_ADMIN') %}
+							<a class="nav-link" href="{{ path('produit-delete', {'id': produit.id}) }}">Supprimer</a>
+						{% endif %}
+					</div>
+				</div>
+			{% else %}
+				<p>Il n'y a aucun article à afficher.</p>
+			{% endfor %}
+		</div>
+
+{% endblock %}

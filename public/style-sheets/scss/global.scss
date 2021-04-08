@@ -1,0 +1,215 @@
+*{
+    margin: 0;
+
+}
+
+// STYLE DE BALISES DE BASE ///////////////////
+
+.text-muted {
+    color: #777;
+}
+
+.text-primary {
+    color: #53D459;
+}
+
+p {
+    font-size: 1rem;
+    line-height: 1.75;
+}
+
+a,
+a:hover,
+a:focus,
+a:active,
+a.active {
+    outline: 0;
+}
+
+a {
+    color: #53D459;
+}
+
+a:hover,
+a:focus,
+a:active,
+a.active {
+    color: #8CEB67;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-family: Montserrat,"Helvetica Neue",Helvetica,Arial,sans-serif;
+    font-weight: 700;
+}
+
+.btn-in-page{
+    padding: 20px 40px;
+    border-color: #53D459;
+    border-radius: 3px;
+    text-transform: uppercase;
+    font-family: Montserrat,"Helvetica Neue",Helvetica,Arial,sans-serif;
+    font-size: 18px;
+    font-weight: 700;
+    color: #fff;
+    background-color: #53D459;
+}
+.btn-in-page:hover{
+    border-color: #8CEB67;
+    color: #fff;
+    background-color: #8CEB67;    
+}
+
+#potager{
+    background-color: rgb(238, 238, 238);
+}
+#margin-body{
+    padding-top: 5rem;
+}
+
+// STRUCTURE DE LA PAGE /////////////
+
+body{
+    font-family: "Roboto Slab","Helvetica Neue",Helvetica,Arial,sans-serif;
+    position: relative;
+    .containers{
+        display: flex;
+        justify-content: space-around;
+    }
+
+    // NAV BAR ////////////
+    .navbar{
+        position: fixed;
+        width: 100%;
+        display: flex;
+        justify-content: space-around;
+        padding: 10px;
+        background-color: #222;
+        z-index: +1;        
+        a{
+            padding-top: 1.5rem;
+            padding-bottom: 1.5rem;
+        }
+        
+    }
+
+    // HEADER : IMAGE DE FOND ////////////
+    header {
+        text-align: center;
+        color: #fff;
+        height: 100vh;
+        background-attachment: scroll;
+        background-image: url(../../assets/images/cultive-aubergine.jpeg);
+        background-position: center center;
+        background-repeat: none;
+        -webkit-background-size: cover;
+        -moz-background-size: cover;
+        background-size: cover;
+        -o-background-size: cover;
+        .intro-text {
+            padding-top: 40vh;
+            padding-bottom: 50px;
+            .intro-lead-in {
+                margin-bottom: 25px;
+                font-family: "Droid Serif","Helvetica Neue",Helvetica,Arial,sans-serif;
+                font-size: 3rem;
+                line-height: 2rem;
+            }
+            .intro-heading {
+                margin-bottom: 25px;
+                font-family: "Droid Serif","Helvetica Neue",Helvetica,Arial,sans-serif;
+            }            
+        }
+    }
+    // SECTIONS et MAIN  /////////////
+    section{
+        display: flex;
+        align-items: center;
+        justify-content: space-around;
+
+        // SECTION 1: LE CONCEPT /////////////
+
+        .concept{
+            padding: 2rem 2rem;
+            width: 80%;
+            flex-direction: column;
+            align-items: center;
+            justify-content: space-around;
+            div{
+                .bulle{
+                    display: flex;
+                    flex-direction: column;
+                    justify-content: space-around;
+                    align-items: center;                    
+                    width: 30%;
+                    h2{
+                        text-align: center;
+                    }
+                    p{
+                        font-size: 1rem;
+                    }
+                    .picto{
+                        padding: 1rem 1rem;
+                        display: block;
+                        height: auto;
+                        width: 200px;
+                        border-radius: 100%;
+                    }
+                }
+            }
+        }
+        // SECTION 2: LES PRODUITS DU MOMENTS /////////////
+        .produits{
+            display: flex;
+            flex-direction: column;
+            width: 80%;
+            .produits-title{
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                padding: 2rem;
+            }
+            // CARD PRODUITS PAGE D'ACCUEIL /////////////
+            .cards-container{
+                display: flex;
+                flex-wrap: wrap;
+                justify-content: space-around;             
+                .card-container{
+                    display: flex;
+                    position: relative;
+                    flex-direction: column;
+                    justify-content: space-between;
+                    align-items: center;
+                    background-color: #fff;
+                    margin-bottom: 1rem;
+                    width: 30%;
+                    .card-link{
+                        display: block;
+                        position: relative;
+                        margin: 0 auto;
+                        max-width: 400px;
+                    }
+                    .card-img{
+                        top: 0;
+                        width: 100%;
+                    }
+                    .card-text{
+                        display: flex;
+                        flex-direction: column;
+                        align-items: center;
+                        .text{
+                            font-size: 1rem;
+                        }
+                    }
+                }
+            }
+        }
+        // CF : LE CONCEPT
+    }
+
+    
+}
