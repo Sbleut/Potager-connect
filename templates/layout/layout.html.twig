@@ -21,7 +21,6 @@
 		<nav
 			class="navbar">
 			<a class="nav-link text-success" href="{{ path('accueil') }}">Accueil</a>
-			{#<a class="nav-link {% if route == 'home' %}active{% endif %}" aria-current="page" href="{{ path('home') }}">Accueil</a>#}
 			<a class="nav-link text-success {% if route == 'register' %}active{% endif %}" href="{{ path('register') }}">Créer profil</a>
 			<a class="nav-link text-success {% if route == 'users' %}active{% endif %}" href="{{ path('users') }}">Nos producteurs</a>
 			<a class="nav-link text-success {% if route == 'produits' %}active{% endif %}" href="{{ path('produits') }}">Nos produits</a>
@@ -34,7 +33,7 @@
 
 		</nav>
 
-		<div id="margin-body">
+		<div id="margin-body" style="{% if app.request.attributes.get('_route') != 'accueil' %}padding-top: 8rem;{% endif %}">
 		{% block body %}Cette page est vide.
 		{% endblock %}
 		</div>
@@ -42,7 +41,6 @@
 
 		<footer
 			class="d-flex justify-content-around">
-			{#<a class="nav-link {% if route == 'home' %}active{% endif %}" aria-current="page" href="{{ path('home') }}">Accueil</a>#}
 			<a class="nav-link text-success {% if route == 'register' %}active{% endif %}" href="{{ path('register') }}">Créer profil</a>
 			<a class="nav-link text-success {% if route == 'users' %}active{% endif %}" href="{{ path('users') }}">Nos producteurs</a>
 			<a class="nav-link text-success {% if route == 'produits' %}active{% endif %}" href="{{ path('produits') }}">Nos produits</a>

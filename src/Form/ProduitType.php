@@ -5,6 +5,7 @@ namespace App\Form;
 use App\Entity\Produit;
 use App\Entity\User;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Validator\Constraints\File;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
@@ -43,14 +44,12 @@ class ProduitType extends AbstractType
                     ])
                 ]
             ])
-            ->add('categorie', TextType::class, [
-                'attr' => [ 
-                    'maxlength' => '255'
-                ],
-                'constraints' => [
-                    new Length([
-                        'max' => 255
-                    ])
+            ->add('categorie', ChoiceType::class, [
+                'choices' => [ 
+                    'Pas de catégorie pour ce produit' => null,
+                    'Extra' => 'Extra',
+                    'Catégorie I' => 'Catégorie I',
+                    'Catégorie II' => 'Catégorie II'
                 ]
             ])
             ->add('traitement', TextType::class, [
@@ -93,6 +92,7 @@ class ProduitType extends AbstractType
                     ])
                 ]
             ])
+            
             ->add('origine', TextType::class, [
                 'attr' => [ 
                     'maxlength' => '255'
@@ -104,12 +104,18 @@ class ProduitType extends AbstractType
                     ])
                 ]
             ])
+            ->add('prix_type', ChoiceType::class, [
+                'label' => 'Type de prix',
+                'choices' => [ 
+                    'prix au kilo' => 'prix au kilo',
+                    'prix à la pièce' => 'prix à la pièce',
+                ]
+            ])
             ->add('description', TextareaType::class, [
                 'attr' => [ 
                     'maxlength' => '1024'
                 ],
                 'constraints' => [
-                    new NotBlank(),
                     new Length([
                         'max' => 1024
                     ])
@@ -118,7 +124,7 @@ class ProduitType extends AbstractType
             ->add('submit', SubmitType::class, [
                 'label' => 'Ajouter un produit',
                 'attr' => [
-                    'class' => 'button'
+                    'class' => 'btn-success'
                     ]
             ])
         ;

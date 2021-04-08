@@ -119,7 +119,7 @@ class RegisterType extends AbstractType
             ->add('submit', SubmitType::class, [
                 'label' => 'Créer un compte',
                 'attr' => [
-                    'class' => 'button'
+                    'class' => 'btn-success'
                     ]
             ])
         ;

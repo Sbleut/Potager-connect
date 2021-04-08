@@ -28,7 +28,7 @@ class Produit
     private $variete;
 
     /**
-     * @ORM\Column(type="string", length=255, nullable=true)
+     * @ORM\Column(type="string", length=32, nullable=true)
      */
     private $categorie;
 
@@ -62,6 +62,11 @@ class Produit
      * @ORM\Column(type="text", length=1024, nullable=true)
      */
     private $description;
+
+    /**
+     * @ORM\Column(type="string", length=16)
+     */
+    private $prix_type;
 
     public function getId(): ?int
     {
@@ -172,6 +177,18 @@ class Produit
     public function setDescription(?string $description): self
     {
         $this->description = $description;
+
+        return $this;
+    }
+
+    public function getPrixType(): ?string
+    {
+        return $this->prix_type;
+    }
+
+    public function setPrixType(string $prix_type): self
+    {
+        $this->prix_type = $prix_type;
 
         return $this;
     }

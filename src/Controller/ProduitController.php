@@ -6,7 +6,7 @@ use App\Entity\Produit;
 use App\Entity\User;
 use App\Form\ProduitType;
 use Exception;
-use App\Controller\IsGranted;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Filesystem\Filesystem;
 use Symfony\Component\Form\FormError;
@@ -22,12 +22,12 @@ class ProduitController extends AbstractController
 
     /**
      * @Route("/produit/create", name="creer-produit")
+     * 
+     * @IsGranted("ROLE_USER")
      */
     public function createProduit(Request $r): Response
     {
         $user = $this->getUser();
-
-        if (empty($user)) throw new NotFoundHttpException();
 
         $produit = new Produit();
 
@@ -109,12 +109,18 @@ class ProduitController extends AbstractController
 
     /**
      * @Route("/modifier-un-produit/{id}", name="modifier_produit")
+     * 
+     * @IsGranted("ROLE_USER")
      */
     public function modifierProduit($id, Request $r): Response
-    {
-
+    {      
         $repo = $this->getDoctrine()->getRepository(produit::class);
         $produit = $repo->find($id);
+
+        if( $produit->getProducteur() != $this->getUser() && !$this->IsGranted('ROLE_ADMIN')){
+
+            return $this->redirectToRoute('accueil');
+        }
 
         $oldImage = $produit->getImage();
 
@@ -163,8 +169,9 @@ class ProduitController extends AbstractController
 
         if (empty($produit)) throw new NotFoundHttpException();
 
-        $user_id = $this->getUser()->getId();
-        if ($produit->getProducteur() == $user_id || $this->IsGranted('ROLE_ADMIN')) {
+        $user = $this->getUser();
+
+        if ($produit->getProducteur() == $user || $this->IsGranted('ROLE_ADMIN')) {
 
             $filename = $produit->getPhoto();
             // Je crée une instance de kla classe fileSystem
