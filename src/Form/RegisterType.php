@@ -45,16 +45,25 @@ class RegisterType extends AbstractType
             //     ]
             // ])
             ->add('nom', TextType::class, [
+                'attr' => [ 
+                    'maxlength' => '255'
+                ],
                 'constraints' => [
                     new NotBlank()
                 ]
             ])
             ->add('prenom', TextType::class, [
+                'attr' => [ 
+                    'maxlength' => '255'
+                ],                
                 'constraints' => [
                     new NotBlank()
                 ]
             ])
             ->add('adresse', TextareaType::class, [
+                'attr' => [ 
+                    'maxlength' => '255'
+                ],
                 'constraints' => [
                     new NotBlank()
                 ]

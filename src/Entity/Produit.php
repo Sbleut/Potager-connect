@@ -33,7 +33,7 @@ class Produit
     private $categorie;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="string", length=255, nullable=true)
      */
     private $traitement;
 
@@ -59,7 +59,7 @@ class Produit
     private $origine;
 
     /**
-     * @ORM\Column(type="string", length=255, nullable=true)
+     * @ORM\Column(type="text", length=1024, nullable=true)
      */
     private $description;
 
