@@ -53,7 +53,7 @@ h6 {
     border-radius: 3px;
     text-transform: uppercase;
     font-family: Montserrat,"Helvetica Neue",Helvetica,Arial,sans-serif;
-    font-size: 18px;
+    font-size: 1.2rem;
     font-weight: 700;
     color: #fff;
     background-color: #53D459;
@@ -89,7 +89,7 @@ body{
         justify-content: space-around;
         padding: 10px;
         background-color: #222;
-        z-index: +1;        
+        z-index: 5;        
         a{
             padding-top: 1.5rem;
             padding-bottom: 1.5rem;
@@ -140,12 +140,14 @@ body{
             align-items: center;
             justify-content: space-around;
             div{
+                display: flex;
+                flex-wrap: wrap;
                 .bulle{
                     display: flex;
                     flex-direction: column;
                     justify-content: space-around;
                     align-items: center;                    
-                    width: 30%;
+                    width: 400px;
                     h2{
                         text-align: center;
                     }
@@ -186,7 +188,7 @@ body{
                     align-items: center;
                     background-color: #fff;
                     margin-bottom: 1rem;
-                    width: 30%;
+                    width: 400px;
                     .card-link{
                         display: block;
                         position: relative;

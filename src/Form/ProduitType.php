@@ -92,7 +92,13 @@ class ProduitType extends AbstractType
                     ])
                 ]
             ])
-            
+            ->add('prix_type', ChoiceType::class, [
+                'label' => 'Type de prix',
+                'choices' => [ 
+                    'prix au kilo' => '/kg',
+                    'prix à la pièce' => '/pièce',
+                ]
+            ])
             ->add('origine', TextType::class, [
                 'attr' => [ 
                     'maxlength' => '255'
@@ -103,14 +109,7 @@ class ProduitType extends AbstractType
                         'max' => 255
                     ])
                 ]
-            ])
-            ->add('prix_type', ChoiceType::class, [
-                'label' => 'Type de prix',
-                'choices' => [ 
-                    'prix au kilo' => 'prix au kilo',
-                    'prix à la pièce' => 'prix à la pièce',
-                ]
-            ])
+            ])            
             ->add('description', TextareaType::class, [
                 'attr' => [ 
                     'maxlength' => '1024'

@@ -8,22 +8,18 @@
 
 		<div class="container d-flex flex-wrap justify-content-around">
 			{% for produit in produits %}
-				<div class="card" style="width: 18rem;">
-					<img class="card-img-top" style="height: 300px; object-fit: cover;" src="{{asset('assets/photos/' ~ produit.photo)}}" alt="Card image cap">
-					<div class="card-body">
-						<h5 class="card-title">{{ produit.nature }}</h5>
-						<p class="card-text">{{ produit.producteur.nom }}. Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+				<div class="card mb-2" style="width: 18rem;">
+					<img class="card-img-top" style="height: 250px; object-fit: cover;" src="{{asset('assets/photos/' ~ produit.photo)}}" alt="Card image cap">
+					<div style="min-height: 145px;" class="d-flex flex-column justify-content-between pt-4 pl-4 pr-4">
+						<h3 class="">{{ produit.nature }}
+							{{ produit.variete }}</h3>
+						<h2 class="text-center">{{ produit.prix }}
+							€{{ produit.PrixType}}</h2>
 					</div>
-					<ul class="list-group list-group-flush">
-						<li class="list-group-item">{{ produit.variete }}</li>
-						<li class="list-group-item">{{ produit.categorie }}</li>
-						<li class="list-group-item">{{ produit.traitement }}</li>
-					</ul>
-					<div class="card-body">
-						<a href="{{ path('user-retrieve', {'id': produit.producteur.id}) }}" class="card-link">{{ produit.producteur.nom }}</a>
-						<a href="{{ path('produit', {'id': produit.id}) }}" class="card-link">Voir les détails du produit</a>
+					<div class="d-flex justify-content-around card-body ">
+						<a href="{{ path('produit', {'id': produit.id}) }}" class="card-link btn btn-success">savoir +</a>
 						{% if app.user == produit.producteur or is_granted('ROLE_ADMIN') %}
-							<a class="nav-link" href="{{ path('produit-delete', {'id': produit.id}) }}">Supprimer</a>
+							<a class="card-link btn btn-success" href="{{ path('produit-delete', {'id': produit.id}) }}">Supprimer</a>
 						{% endif %}
 					</div>
 				</div>
@@ -32,4 +28,4 @@
 			{% endfor %}
 		</div>
 
-{% endblock %}
+	{% endblock %}

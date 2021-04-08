@@ -50,7 +50,7 @@ h6 {
   border-radius: 3px;
   text-transform: uppercase;
   font-family: Montserrat, "Helvetica Neue", Helvetica, Arial, sans-serif;
-  font-size: 18px;
+  font-size: 1.2rem;
   font-weight: 700;
   color: #fff;
   background-color: #53D459;
@@ -85,7 +85,7 @@ body .navbar {
   justify-content: space-around;
   padding: 10px;
   background-color: #222;
-  z-index: 1;
+  z-index: 5;
 }
 body .navbar a {
   padding-top: 1.5rem;
@@ -130,12 +130,16 @@ body section .concept {
   align-items: center;
   justify-content: space-around;
 }
+body section .concept div {
+  display: flex;
+  flex-wrap: wrap;
+}
 body section .concept div .bulle {
   display: flex;
   flex-direction: column;
   justify-content: space-around;
   align-items: center;
-  width: 30%;
+  width: 400px;
 }
 body section .concept div .bulle h2 {
   text-align: center;
@@ -174,7 +178,7 @@ body section .produits .cards-container .card-container {
   align-items: center;
   background-color: #fff;
   margin-bottom: 1rem;
-  width: 30%;
+  width: 400px;
 }
 body section .produits .cards-container .card-container .card-link {
   display: block;
