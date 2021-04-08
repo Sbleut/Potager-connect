@@ -13,6 +13,7 @@ use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Mime\Email as MimeEmail;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Validator\Constraints\Email;
 use Symfony\Component\Validator\Constraints\EmailValidator;
 use Symfony\Component\Validator\Constraints\EqualTo;
 use Symfony\Component\Validator\Constraints\File;
@@ -27,6 +28,7 @@ class RegisterType extends AbstractType
             ->add('email', EmailType::class, [
                 'constraints' => [
                     new NotBlank(),
+                    new Email()
                 ]
             ])
             ->add('password', PasswordType::class, [
@@ -49,7 +51,10 @@ class RegisterType extends AbstractType
                     'maxlength' => '255'
                 ],
                 'constraints' => [
-                    new NotBlank()
+                    new NotBlank(),
+                    new Length([
+                        'max' => 255
+                    ])
                 ]
             ])
             ->add('prenom', TextType::class, [
@@ -57,7 +62,10 @@ class RegisterType extends AbstractType
                     'maxlength' => '255'
                 ],                
                 'constraints' => [
-                    new NotBlank()
+                    new NotBlank(),
+                    new Length([
+                        'max' => 255
+                    ])
                 ]
             ])
             ->add('adresse', TextareaType::class, [
@@ -65,7 +73,10 @@ class RegisterType extends AbstractType
                     'maxlength' => '255'
                 ],
                 'constraints' => [
-                    new NotBlank()
+                    new NotBlank(),
+                    new Length([
+                        'max' => 255
+                    ])
                 ]
             ])
             ->add('certificat', FileType::class, [

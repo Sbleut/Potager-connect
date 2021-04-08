@@ -13,6 +13,7 @@ use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Validator\Constraints\File as ConstraintsFile;
+use Symfony\Component\Validator\Constraints\Length;
 use Symfony\Component\Validator\Constraints\NotBlank;
 
 class ProduitType extends AbstractType
@@ -25,7 +26,10 @@ class ProduitType extends AbstractType
                     'maxlength' => '255'
                 ],
                 'constraints' => [
-                    new NotBlank()
+                    new NotBlank(),
+                    new Length([
+                        'max' => 255
+                    ])
                 ]
             ])
             ->add('variete', TextType::class, [
@@ -33,12 +37,20 @@ class ProduitType extends AbstractType
                     'maxlength' => '255'
                 ],
                 'constraints' => [
-                    new NotBlank()
+                    new NotBlank(),
+                    new Length([
+                        'max' => 255
+                    ])
                 ]
             ])
             ->add('categorie', TextType::class, [
                 'attr' => [ 
                     'maxlength' => '255'
+                ],
+                'constraints' => [
+                    new Length([
+                        'max' => 255
+                    ])
                 ]
             ])
             ->add('traitement', TextType::class, [
@@ -46,7 +58,10 @@ class ProduitType extends AbstractType
                     'maxlength' => '255'
                 ],
                 'constraints' => [
-                    new NotBlank()
+                    new NotBlank(),
+                    new Length([
+                        'max' => 255
+                    ])
                 ]
             ])
             ->add('photo', FileType::class, [
@@ -72,15 +87,21 @@ class ProduitType extends AbstractType
                     'maxlength' => '255'
                 ],
                 'constraints' => [
-                    new NotBlank()
+                    new NotBlank(),
+                    new Length([
+                        'max' => 255
+                    ])
                 ]
             ])
-            ->add('prix', TextType::class, [
+            ->add('origine', TextType::class, [
                 'attr' => [ 
                     'maxlength' => '255'
                 ],
                 'constraints' => [
-                    new NotBlank()
+                    new NotBlank(),
+                    new Length([
+                        'max' => 255
+                    ])
                 ]
             ])
             ->add('description', TextareaType::class, [
@@ -88,7 +109,10 @@ class ProduitType extends AbstractType
                     'maxlength' => '1024'
                 ],
                 'constraints' => [
-                    new NotBlank()
+                    new NotBlank(),
+                    new Length([
+                        'max' => 1024
+                    ])
                 ]
             ])
             ->add('submit', SubmitType::class, [
