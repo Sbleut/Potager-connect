@@ -142,16 +142,18 @@ body{
             div{
                 display: flex;
                 flex-wrap: wrap;
+                width: 100%;
                 .bulle{
                     display: flex;
                     flex-direction: column;
                     justify-content: space-around;
                     align-items: center;                    
-                    width: 400px;
+                    width: 300px;
                     h2{
                         text-align: center;
                     }
                     p{
+                        text-justify: auto;
                         font-size: 1rem;
                     }
                     .picto{
@@ -209,7 +211,12 @@ body{
                     }
                 }
             }
+        }        
+        form{
+            display: block;
+            width: 80%;
         }
+        
         // CF : LE CONCEPT
     }
 

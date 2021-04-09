@@ -1,6 +1,6 @@
 {% extends "layout/layout.html.twig" %}
 
-{% block title %}Tous les produits
+{% block title %}Modifier produit
 {% endblock %}
 
 {% block body %}
@@ -26,6 +26,10 @@
 					{% endif %}
 				</div>
 			</div>
+		</div>
+
+		<div class="container">
+			{{ 	form(form, {'action': path('modifier_produit', {'id': produit.id})  })	}}
 		</div>
 	
 	</div>

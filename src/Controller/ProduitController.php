@@ -38,13 +38,13 @@ class ProduitController extends AbstractController
 
             $produit->setProducteur($user);
 
-            $image = $formProduit->get('photo')->getData();
+            $photo = $formProduit->get('photo')->getData();
             // On définit le nom du fichier
-            $fileName =  uniqid() . '.' . $image->guessExtension();
+            $fileName =  uniqid() . '.' . $photo->guessExtension();
 
             try {
                 // On déplace le fichier
-                $image->move($this->getParameter('produit_photo_directory'), $fileName);
+                $photo->move($this->getParameter('produit_photo_directory'), $fileName);
             } catch (FileException $ex) {
                 $formProduit->addError(new FormError('Une erreur est survenue pendant l\'upload du fichier : ' . $ex->getMessage()));
                 throw new Exception('File upload error');
@@ -122,33 +122,33 @@ class ProduitController extends AbstractController
             return $this->redirectToRoute('accueil');
         }
 
-        $oldImage = $produit->getImage();
+        $oldPhoto = $produit->getPhoto();
 
         if (empty($produit)) throw new NotFoundHttpException();
 
-        $form = $this->createForm(produitType::class, $produit);
+        $form = $this->createForm(ProduitType::class, $produit);
 
         $form->handleRequest($r);
 
         if (!$form->isSubmitted() || !$form->isValid()) {
-            return $this->render('produit/modifier-produit.html.twig', [
+            return $this->render('modifier-produit.html.twig', [
                 'form' => $form->createView(),
-                'oldImage' => $oldImage,
-                'id' => $produit->getId()
+                'oldphoto' => $oldPhoto,
+                'produit' => $produit
             ]);
         } else {
 
             // Je vais déplacer le fichier uploadé
-            $image = $form->get('image')->getData();
+            $photo = $form->get('photo')->getData();
 
             try {
-                $image->move($this->getParameter('produit_image_directory'), $oldImage);
+                $photo->move($this->getParameter('produit_photo_directory'), $oldPhoto);
             } catch (FileException $ex) {
                 $form->addError(new FormError('Une erreur est survenue pendant l\'upload du fichier : ' . $ex->getMessage()));
                 throw new Exception('File upload error');
             }
 
-            $produit->setImage($oldImage);
+            $produit->setphoto($oldPhoto);
 
             $em = $this->getDoctrine()->getManager();
             $em->persist($produit);
@@ -176,7 +176,7 @@ class ProduitController extends AbstractController
             $filename = $produit->getPhoto();
             // Je crée une instance de kla classe fileSystem
             $fileSystem = new Filesystem();
-            //Je supprime l'image du dossier
+            //Je supprime l'photo du dossier
             $fileSystem->remove('%kernel.project_dir%/public/assets/photos/' . $filename);
 
             $em = $this->getDoctrine()->getManager();

@@ -155,6 +155,63 @@ class UserController extends AbstractController
     }
 
     /**
+     * @Route("/modifier-un-user/{id}", name="modifier_user")
+     * 
+     * @IsGranted("ROLE_USER")
+     */
+    public function modifierUser(Request $r, UserPasswordEncoderInterface $encoder, User $user): Response
+    {
+        if( $user != $this->getUser() && !$this->IsGranted('ROLE_ADMIN')){
+
+            return $this->redirectToRoute('accueil');
+        }
+
+        $oldPortrait = $user->getPortrait();
+        $oldPassword = $user->getPassword();
+
+        if (empty($user)) throw new NotFoundHttpException();
+
+        $form = $this->createForm(RegisterType::class, $user);
+
+        $form->handleRequest($r);
+
+        if (!$form->isSubmitted() || !$form->isValid()) {
+            return $this->render('user/modifier-user.html.twig', [
+                'form' => $form->createView(),
+                'oldPortrait' => $oldPortrait,
+                'user' => $user
+            ]);
+        } else {
+
+            if (!empty($user->getPassword())) {
+                $encodedPassword = $encoder->encodePassword($user, $user->getPassword());
+                $user->setPassword($encodedPassword);
+            } else {
+                $user->setPassword($oldPassword);
+            }
+
+            // Je vais déplacer le fichier uploadé
+            $portrait = $form->get('portrait')->getData();
+
+            try {
+                $portrait->move($this->getParameter('user_portrait_directory'), $oldPortrait);
+            } catch (FileException $ex) {
+                $form->addError(new FormError('Une erreur est survenue pendant l\'upload du fichier : ' . $ex->getMessage()));
+                throw new Exception('File upload error');
+            }
+
+            $user->setPortrait($oldPortrait);
+
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($user);
+            $em->flush();
+
+            return $this->redirect('/user/' . $user->getId());
+        }
+    }
+
+
+    /**
      * @Route("/supprimer-user/{id}", name="user-delete")
      */
     public function supprimerUser($id): Response
@@ -164,7 +221,7 @@ class UserController extends AbstractController
         $repo = $this->getDoctrine()->getRepository(User::class);
         $userDel = $repo->find($id);
 
-        if (empty($produit)) {
+        if (empty($user)) {
             return $this->redirectToRoute('register');
         }
 

@@ -133,18 +133,20 @@ body section .concept {
 body section .concept div {
   display: flex;
   flex-wrap: wrap;
+  width: 100%;
 }
 body section .concept div .bulle {
   display: flex;
   flex-direction: column;
   justify-content: space-around;
   align-items: center;
-  width: 400px;
+  width: 300px;
 }
 body section .concept div .bulle h2 {
   text-align: center;
 }
 body section .concept div .bulle p {
+  text-justify: auto;
   font-size: 1rem;
 }
 body section .concept div .bulle .picto {
@@ -197,6 +199,10 @@ body section .produits .cards-container .card-container .card-text {
 }
 body section .produits .cards-container .card-container .card-text .text {
   font-size: 1rem;
+}
+body section form {
+  display: block;
+  width: 80%;
 }
 
 /*# sourceMappingURL=global.css.map */
