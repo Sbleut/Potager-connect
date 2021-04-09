@@ -25,21 +25,24 @@
 
 	<div class="container d-flex flex-wrap justify-content-around">
 		{% for produit in user.produits %}
-			<div class="card " style="width: 18rem;">
-				<img class="card-img-top" style="height: 300px; object-fit: cover;" src="{{asset('assets/photos/' ~ produit.photo)}}" alt="Card image cap">
-				<div class="card-body">
-					<h5 class="card-title">{{ produit.nature }}</h5>
-					<p class="card-text">{{ produit.producteur.nom }}. Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+			<div class="card mb-5" style="width: 18rem;">
+					<img class="card-img-top" style="height: 250px; object-fit: cover;" src="{{asset('assets/photos/' ~ produit.photo)}}" alt="Card image cap">
+					<div style="min-height: 145px;" class="d-flex flex-column justify-content-between pt-4 pl-4 pr-4">
+						<h3 class="">{{ produit.nature }}
+							{{ produit.variete }}</h3>
+						<h2 class="text-center">{{ produit.prix }}
+							€{{ produit.PrixType}}</h2>
+					</div>
+					<div class="d-flex flex-column justify-content-between card-body  align-items-center">
+						<a href="{{ path('produit', {'id': produit.id}) }}" class="card-link btn btn-success">Savoir +</a>
+						<div class="mt-3">
+						{% if app.user == produit.producteur or is_granted('ROLE_ADMIN') %}
+							<a class="btn btn-success btn-sm" href="{{ path('produit-delete', {'id': produit.id}) }}">Supprimer</a>
+							<a class=" btn btn-success btn-sm" href="{{ path('modifier_produit', {'id': produit.id}) }}">Modifier</a>
+						{% endif %}
+						</div>
+					</div>
 				</div>
-				<ul class="list-group list-group-flush">
-					<li class="list-group-item">{{ produit.variete }}</li>
-					<li class="list-group-item">{{ produit.categorie }}</li>
-					<li class="list-group-item">{{ produit.traitement }}</li>
-				</ul>
-				<div class="card-body">
-					<a  href="{{ path('user-retrieve', {'id': produit.producteur.id}) }}" class="card-link btn btn-success">{{ produit.producteur.nom }}</a>
-				</div>
-			</div>
 		{% else %}
 			<p>Il n'y a aucun article à afficher.</p>
 		{% endfor %}

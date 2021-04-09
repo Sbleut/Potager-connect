@@ -107,6 +107,7 @@ class RegisterType extends AbstractType
                         'mimeTypes' => [
                             'image/jpeg',
                             'image/png',
+                            'image/webp'
                         ]
                     
                     ])

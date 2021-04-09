@@ -19,7 +19,7 @@
 		{% set route = app.request.get('_route') %}
 
 		<nav
-			class="navbar">
+			class="navbar navbar-expand">
 			<a class="nav-link text-success" href="{{ path('accueil') }}">Accueil</a>
 			<a class="nav-link text-success {% if route == 'register' %}active{% endif %}" href="{{ path('register') }}">Créer profil</a>
 			<a class="nav-link text-success {% if route == 'users' %}active{% endif %}" href="{{ path('users') }}">Nos producteurs</a>
