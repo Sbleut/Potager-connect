@@ -64,10 +64,19 @@ h6 {
     background-color: #8CEB67;    
 }
 
+.img-card{
+    max-height: 300px;
+    width: auto;
+}
+
 #potager{
     background-color: rgb(238, 238, 238);
 }
-#margin-body{
+
+.pt-body{
+    padding-top: 8rem;
+} 
+.pt-accueil{
     padding-top: 5rem;
 }
 
@@ -221,4 +230,29 @@ body{
     }
 
     
+}
+
+////////////////////////////////// RESPONSIVE ///////////////////////////
+
+@media screen and (max-width: 750px) {
+    .pt-accueil{
+        padding-top: 8rem;
+    }
+    .pt-body{
+        padding-top: 12rem;
+    } 
+    body{
+        .navbar{
+        flex-wrap: wrap;
+        }
+        .container{
+            .card{
+                flex-wrap: wrap;
+                img{                
+                max-height: none;
+                width: 100%;
+                }
+            }
+        }
+    }
 }

@@ -33,7 +33,7 @@
 
 		</nav>
 
-		<div id="margin-body" style="{% if app.request.attributes.get('_route') != 'accueil' %}padding-top: 8rem;{% endif %}">
+		<div class="{% if app.request.attributes.get('_route') != 'accueil' %}pt-body{% else %}pt-accueil{% endif %}">
 		{% block body %}Cette page est vide.
 		{% endblock %}
 		</div>

@@ -239,10 +239,10 @@ class UserController extends AbstractController
 
 
             $em = $this->getDoctrine()->getManager();
-            $em->remove($user);
+            $em->remove($userDel);
             $em->flush();
         }
 
-        return $this->redirectToRoute('user-retrieve');
+        return $this->redirectToRoute('users');
     }
 }

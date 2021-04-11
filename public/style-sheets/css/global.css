@@ -62,11 +62,20 @@ h6 {
   background-color: #8CEB67;
 }
 
+.img-card {
+  max-height: 300px;
+  width: auto;
+}
+
 #potager {
   background-color: #eeeeee;
 }
 
-#margin-body {
+.pt-body {
+  padding-top: 8rem;
+}
+
+.pt-accueil {
   padding-top: 5rem;
 }
 
@@ -203,6 +212,27 @@ body section .produits .cards-container .card-container .card-text .text {
 body section form {
   display: block;
   width: 80%;
+}
+
+@media screen and (max-width: 750px) {
+  .pt-accueil {
+    padding-top: 8rem;
+  }
+
+  .pt-body {
+    padding-top: 12rem;
+  }
+
+  body .navbar {
+    flex-wrap: wrap;
+  }
+  body .container .card {
+    flex-wrap: wrap;
+  }
+  body .container .card img {
+    max-height: none;
+    width: 100%;
+  }
 }
 
 /*# sourceMappingURL=global.css.map */
