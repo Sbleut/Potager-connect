@@ -10,7 +10,7 @@ Profils Test :
         MP: legumeslove
     
     - Utilisateur Martine :
-        Produits : Pommes, Framboises, Cerises
+        Produits : abricots, Framboises, Cerises
         mail: martine@gmail.com
         MP: fruitslove
 

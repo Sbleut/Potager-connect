@@ -101,7 +101,7 @@ class UserAuthenticator extends AbstractFormLoginAuthenticator implements Passwo
         $session->getFlashBag()->add('success', 'Tu es bien connecté');
 
 
-        return new RedirectResponse('/');
+        return new RedirectResponse('/user/profil');
         
     }
 

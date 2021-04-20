@@ -18,6 +18,8 @@
 
 		{% set route = app.request.get('_route') %}
 
+		
+
 		<nav
 			class="navbar navbar-expand">
 			<a class="nav-link text-success" href="{{ path('accueil') }}">Accueil</a>
@@ -48,6 +50,7 @@
 			{% if app.user %}
 				<a class="nav-link text-success" href="{{ path('user-profil') }}">Mon profil</a>
 			{% endif %}
+			<a class="nav-link text-success " href="{{ path('mentions') }}">Mentions légales</a>
 			<a class="nav-link text-success {% if route == 'app_login' %}active{% endif %}" href="{{ path('app_login') }}">Login</a>
 			<a class="nav-link text-success" href="{{ path('app_logout') }}">Logout</a>
 

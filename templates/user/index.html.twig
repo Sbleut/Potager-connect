@@ -1,6 +1,6 @@
 {% extends 'layout/layout.html.twig' %}
 
-{% block title %}Hello RegisterController!{% endblock %}
+{% block title %}Création de compte{% endblock %}
 
 {% block body %}
 <style>
@@ -10,6 +10,10 @@
 
 <div class="example-wrapper">
     <h1> Créer votre compte </h1>
+
+    <h2>Conditions d'utilisation</h2>
+
+    
 
 
 {{ form( form, {'action': path( 'register' )} ) }}

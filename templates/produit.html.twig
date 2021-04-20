@@ -11,7 +11,7 @@
 				<img class="card-img-top" style="max-height: 60vh; object-fit: cover;" src="{{asset('assets/photos/' ~ produit.photo)}}" alt="Card image cap">
 				<div class="card-body">
 					<h5 class="card-title">{{ produit.nature }} {{ produit.variete }}</h5>
-					<p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content. Proposer par votre producteur <a class="nav-link text-success" href="{{ path('user-retrieve', {'id': produit.producteur.id}) }}">{{ produit.producteur.prenom }} {{ produit.producteur.nom }}</a></p>
+					<p class="card-text">{{ produiut.description }}<a class="nav-link text-success" href="{{ path('user-retrieve', {'id': produit.producteur.id}) }}">{{ produit.producteur.prenom }} {{ produit.producteur.nom }}</a></p>
 				</div>
 				<ul class="list-group list-group-flush">
 					<li class="list-group-item">{{ produit.categorie }}</li>
@@ -19,7 +19,7 @@
 				</ul>
 				<div class="d-flex flex-column justify-content-between align-items-center card-body">
 					<p>Passez commande directement par mail en cliquant sur le lien ci-dessous.</p>
-					<a type="button" href="{{ path('user-retrieve', {'id': produit.producteur.id}) }}" class="card-link btn btn-success mb-3">Passez commande</a>
+					<a type="button" href="{{ path('command', {'idUser': produit.producteur.id, 'idProduit': produit.id}) }}" class="card-link btn btn-success mb-3">Passez commande</a>
 					<h3>{{ produit.prix }} €{{ produit.PrixType }}</h3>
 					{% if app.user == produit.producteur or is_granted('ROLE_ADMIN') %}
 						<a class="nav-link text-success" href="{{ path('produit-delete', {'id': produit.id}) }}">Supprimer</a>
